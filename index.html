@@ -368,6 +368,15 @@ a.team.silver{text-decoration:none;transition:background .2s}
 a.team.silver:hover,a.team.silver:focus-visible{background:#A3284B}
 a.team.silver .go{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.88rem;padding:10px 16px;border:2px solid var(--oro);color:var(--oro-chiaro);white-space:nowrap}
 a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
+
+/* dirette */
+.nm-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.live-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.88rem;padding:10px 16px;background:#fff;color:var(--amaranto-deep);text-decoration:none;border-radius:2px}
+.live-btn:hover{background:var(--oro-chiaro)}
+.live-dot{width:10px;height:10px;border-radius:50%;background:#D7263D;flex:none;box-shadow:0 0 0 0 rgba(215,38,61,.6);animation:live 1.6s infinite}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(215,38,61,.6)}70%{box-shadow:0 0 0 8px rgba(215,38,61,0)}100%{box-shadow:0 0 0 0 rgba(215,38,61,0)}}
+.live-line{text-align:left!important}
+.live-line .live-dot{display:inline-block;margin-right:8px;vertical-align:1px}
 </style>
 
 </head>
@@ -595,6 +604,7 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
         <p class="eyebrow">Calendario partite</p>
         <h2>Serie A Silver</h2>
         <p>Campionato maschile, girone B, stagione 2026/27: tutte le partite della Serra Fasano. <a class="ext-link" href="https://www.federhandball.it/campionati-nazionali/serie-a-silver/" target="_blank" rel="noopener">Pagina ufficiale FIGH della Serie A Silver ↗</a></p>
+        <p class="live-line"><span class="live-dot" aria-hidden="true"></span>Le partite in diretta streaming sul canale YouTube della Federazione: <a class="ext-link" href="https://www.youtube.com/@PallamanoTVfigh/streams" target="_blank" rel="noopener">Pallamano TV FIGH ↗</a></p>
       </div>
       <div class="next-match" id="next-match"></div>
       <div class="filters" role="group" aria-label="Filtra le partite">
@@ -790,7 +800,7 @@ if(prossima&&nextBox){
   nextBox.innerHTML=`<p class="nm-label">Prossima partita · ${p.g}ª giornata</p>
   <div class="nm-teams"><span>${p.casa?'Serra Fasano':p.avv}</span><i>vs</i><span>${p.casa?p.avv:'Serra Fasano'}</span></div>
   <p class="nm-info">${GG[p.dt.getDay()]} ${p.dt.getDate()} ${MM[p.dt.getMonth()].toLowerCase()} · ore ${ora} · ${p.luogo}</p>
-  <span class="tag ${p.casa?'casa':'trasf'}">${p.casa?'In casa: vieni a tifare!':'Trasferta'}</span>`;
+  <div class="nm-actions"><span class="tag ${p.casa?'casa':'trasf'}">${p.casa?'In casa: vieni a tifare!':'Trasferta'}</span><a class="live-btn" href='https://www.youtube.com/@PallamanoTVfigh/streams' target="_blank" rel="noopener"><span class="live-dot" aria-hidden="true"></span>Guarda la diretta su Pallamano TV</a></div>`;
 }else if(nextBox){nextBox.hidden=true}
 document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('.filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));
