@@ -306,6 +306,14 @@ img{max-width:100%}
 /* Roberto Serra */
 .memoria{background:var(--surface);border-block:1px solid var(--line)}
 .mem-inner{max-width:720px;margin:0 auto;display:grid;gap:14px}
+.mem-head{display:flex;align-items:flex-end;gap:28px}
+.mem-head>div{flex:1;min-width:0}
+@media (max-width:560px){.mem-head{flex-direction:column;align-items:flex-start}}
+.mem-head .eyebrow{margin-bottom:10px}
+.mem-foto{margin:0;width:180px;max-width:100%;background:#fff;padding:8px 8px 6px;box-shadow:0 6px 18px rgba(40,10,20,.18);transform:rotate(-2deg)}
+.mem-foto img{display:block;width:100%;height:auto;filter:sepia(.15)}
+.mem-foto figcaption{font-family:var(--label);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#6E5A5F;text-align:center;margin-top:5px}
+@media (prefers-reduced-motion: reduce){.mem-foto{transform:none}}
 .memoria h2{color:var(--accent-text)}
 .lettera{margin-top:18px;padding-left:24px;border-left:3px solid var(--oro);display:grid;gap:16px;font-size:1.08rem;line-height:1.75}
 .lettera p:first-child::first-letter{font-family:var(--display);font-weight:900;font-size:3.4em;float:left;line-height:.8;padding:6px 10px 0 0;color:var(--accent-text)}
@@ -410,8 +418,16 @@ img{max-width:100%}
   <section id="roberto-serra" class="memoria">
     <div class="wrap">
       <div class="mem-inner">
-        <p class="eyebrow">Il nome che portiamo</p>
-        <h2>Roberto Serra</h2>
+        <div class="mem-head">
+          <figure class="mem-foto">
+            <img src="roberto-serra.jpg" alt="Foto d'epoca di Roberto Serra con la squadra" width="192" height="195" loading="lazy">
+            <figcaption>Una foto d'epoca</figcaption>
+          </figure>
+          <div>
+            <p class="eyebrow">Il nome che portiamo</p>
+            <h2>Roberto Serra</h2>
+          </div>
+        </div>
         <div class="lettera">
           <p>Sono passati tanti anni, quasi cinquanta, ma il suo ricordo è ancora vivo. Me lo vedo ancora per le nostre strade intento a discutere di sport, di tornei, di calcio, di tutto. Era così il “dottor” Roberto, un comunicatore, sempre pronto a cose nuove, a pensarle, a organizzarle, a viverle, solo per il piacere di farlo, per stare in compagnia e per rendere la vita meno noiosa e più divertente.</p>
           <p>È stato “un pioniere” nel vero senso della parola, lo è stato per la pallamano, ma non solo, ha creato squadre di calcio dilettantistico (quello puro, quello dei campi di terra polverosi d’estate e infangati d’inverno), amava correre e lo faceva per le strade, per i campi, sempre e ovunque ci fosse la possibilità. Anche dopo il terribile incidente dal quale si salvò per miracolo, continuò ad animare la vita sportiva della nostra città, con lo spirito nobile del dilettante vero, di colui che in cambio non vuole niente, di chi gli basta vedere dei ragazzi correre dietro una palla per essere contento.</p>
