@@ -96,11 +96,20 @@ section{padding-block:88px}
 
 /* chi siamo */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:56px}
-.about .text{display:flex;flex-direction:column;gap:18px;max-width:60ch}
+.about .text{display:flex;flex-direction:column;gap:16px;max-width:60ch}
+.about h3{font-size:1.7rem;color:var(--accent-text);padding-bottom:10px;border-bottom:2px solid var(--oro);align-self:flex-start}
+.motto{margin-block:56px 40px;padding:32px 28px;background:var(--amaranto);color:var(--on-dark);border-bottom:4px solid var(--oro);display:grid;gap:10px;justify-items:center;text-align:center}
+.motto-words{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 28px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(2rem,6vw,3.6rem);line-height:1}
+.motto-words span:nth-child(2){color:var(--oro)}
+.motto-quote{font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(1.2rem,3vw,1.6rem);color:var(--oro-chiaro)}
 .values{display:grid;gap:0;border-top:2px solid var(--amaranto)}
 .values div{display:grid;grid-template-columns:90px 1fr;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
 .values dt{font-family:var(--display);font-weight:800;font-size:1.5rem;text-transform:uppercase;color:var(--accent-text);line-height:1.1}
-.values dd{margin:0;color:var(--muted)}
+.values dd{margin:0;color:var(--muted);text-align:left!important}
+.values{grid-template-columns:repeat(4,1fr);border-top:0;gap:0 24px}
+.values div{grid-template-columns:1fr;gap:6px;border-top:2px solid var(--amaranto);border-bottom:0}
+@media (max-width:900px){.values{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.values{grid-template-columns:1fr}}
 @media (max-width:820px){.about{grid-template-columns:1fr;gap:36px}}
 
 /* squadre */
@@ -355,12 +364,28 @@ img{max-width:100%}
 
 
   <section id="societa">
-    <div class="wrap about">
-      <div class="text">
+    <div class="wrap">
+      <div class="sec-head">
         <p class="eyebrow">La società · dal 2008</p>
-        <h2>Pallamano per tutti</h2>
-        <p>Dal 2008 l'ASD Polisportiva "Roberto Serra" fa giocare a pallamano bambini, ragazzi e adulti di Fasano e dei comuni vicini, in un ambiente dove contano l'impegno, il rispetto e il piacere di giocare.</p>
-        <p>Siamo tra le pochissime società sportive in Italia che offrono l'attività in modo completamente gratuito a tutti gli iscritti dai 6 ai 18 anni. Nessuna quota, nessuna barriera: in campo si entra per merito della propria voglia di giocare.</p>
+        <h2>Una società giovane per i giovani</h2>
+      </div>
+      <div class="about">
+        <div class="text">
+          <h3>La storia</h3>
+          <p>L’ASD Polisportiva Roberto Serra è un’associazione sportiva costituita, nel 2008, per promuovere la pratica sportiva attraverso la Pallamano, disciplina olimpica, che come tutti gli sport di squadra educano alla condivisione e alla coesione per il raggiungimento di risultati importanti.</p>
+          <p>“Una società giovane per i giovani”: con questa filosofia, la nostra Associazione si propone, allo stesso tempo, di contribuire allo sviluppo del tessuto socio-sportivo della nostra città proponendo e attuando progetti di promozione polisportiva con le scuole e le istituzioni del nostro territorio.</p>
+          <p>“Effetto Serra”: così ha titolato la stampa per sintetizzare i risultati ottenuti in diciotto anni di attività che ci hanno permesso di diventare una società di primissimo piano a livello regionale.</p>
+        </div>
+        <div class="text">
+          <h3>Mission</h3>
+          <p>L’attuale sistema formativo rappresentato in primis dai nostri collaboratori è certamente base solida del processo sportivo ed educativo.</p>
+          <p>L’ASD Polisportiva Roberto Serra si pone come punto di riferimento per le nuove generazioni che sognano il gioco della pallamano. Nata come progetto di ampio respiro il cui intento è creare un perfetto connubio tra pallamano, cultura sportiva e sociale, l’associazione si avvale dell’esperienza di tecnici specializzati che seguono passo dopo passo i piccoli atleti, con la doppia funzione di insegnanti ed educatori.</p>
+          <p>Tre parole guidano e guideranno sempre la nostra società: “rispetto, educazione e sport”, parole che contribuiranno alla crescita dei nostri atleti e dei nostri ragazzi nella convinzione che “la palestra della vita si chiama sport”.</p>
+        </div>
+      </div>
+      <div class="motto">
+        <p class="motto-words"><span>Rispetto</span><span>Educazione</span><span>Sport</span></p>
+        <p class="motto-quote">«La palestra della vita si chiama sport»</p>
       </div>
       <dl class="values">
         <div><dt>Educa</dt><dd>Educazione attraverso lo sport: regole, rispetto e impegno, dentro e fuori dal campo.</dd></div>
