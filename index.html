@@ -58,7 +58,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .menu a{text-decoration:none;padding-block:6px;border-bottom:2px solid transparent}
 .menu a:hover{border-color:var(--oro);color:var(--oro-chiaro)}
 .burger{display:none;background:none;border:1px solid var(--oro);color:var(--on-dark);font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;padding:8px 12px;border-radius:2px;cursor:pointer}
-@media (max-width:1500px){
+@media (max-width:1680px){
   .burger{display:block}
   .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:var(--band-2);border-bottom:3px solid var(--oro);padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
   .menu.open{display:flex}
@@ -273,7 +273,7 @@ img{max-width:100%}
 [hidden]{display:none!important}
 
 /* testi giustificati con sillabazione italiana */
-.hero .lead,.text p,.sec-head p,.values dd,.team p,.projects p,.art33 .body p,.art33 blockquote,.free-band p,.join p,.join li span,.note{text-align:justify;hyphens:auto;-webkit-hyphens:auto;text-wrap:pretty}
+.hero .lead,.lettera p,.text p,.sec-head p,.values dd,.team p,.projects p,.art33 .body p,.art33 blockquote,.free-band p,.join p,.join li span,.note{text-align:justify;hyphens:auto;-webkit-hyphens:auto;text-wrap:pretty}
 .team p,.projects p{text-align-last:left}
 
 /* sponsor */
@@ -302,6 +302,16 @@ img{max-width:100%}
 .btn.ghost.press-more{margin-top:20px;color:var(--fg);border-color:var(--amaranto)}
 .btn.ghost.press-more:hover{background:var(--amaranto);color:var(--on-dark)}
 @media (max-width:640px){.press-item{grid-template-columns:1fr auto}.pr-meta{grid-column:1/-1;flex-direction:row;gap:10px}}
+
+/* Roberto Serra */
+.memoria{background:var(--surface);border-block:1px solid var(--line)}
+.mem-inner{max-width:720px;margin:0 auto;display:grid;gap:14px}
+.memoria h2{color:var(--accent-text)}
+.lettera{margin-top:18px;padding-left:24px;border-left:3px solid var(--oro);display:grid;gap:16px;font-size:1.08rem;line-height:1.75}
+.lettera p:first-child::first-letter{font-family:var(--display);font-weight:900;font-size:3.4em;float:left;line-height:.8;padding:6px 10px 0 0;color:var(--accent-text)}
+.lettera .grazie{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--accent-text);text-align:left!important;margin-top:8px}
+.lettera .firma{font-style:italic;color:var(--muted);text-align:right!important}
+@media (max-width:480px){.lettera{padding-left:16px}}
 </style>
 
 </head>
@@ -315,6 +325,7 @@ img{max-width:100%}
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul class="menu" id="menu">
       <li><a href="#societa">Società</a></li>
+      <li><a href="#roberto-serra">Roberto Serra</a></li>
       <li><a href="#articolo33">Art. 33</a></li>
       <li><a href="#squadre">Squadre</a></li>
       <li><a href="#orari">Orari</a></li>
@@ -393,6 +404,25 @@ img{max-width:100%}
         <div><dt>Unisce</dt><dd>Fai nuove amicizie in un gruppo di ragazze e ragazzi che condividono la stessa passione.</dd></div>
         <div><dt>Squadra</dt><dd>Vivi il valore della squadra, dalla Propaganda fino alla Serie A Silver.</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <section id="roberto-serra" class="memoria">
+    <div class="wrap">
+      <div class="mem-inner">
+        <p class="eyebrow">Il nome che portiamo</p>
+        <h2>Roberto Serra</h2>
+        <div class="lettera">
+          <p>Sono passati tanti anni, quasi cinquanta, ma il suo ricordo è ancora vivo. Me lo vedo ancora per le nostre strade intento a discutere di sport, di tornei, di calcio, di tutto. Era così il “dottor” Roberto, un comunicatore, sempre pronto a cose nuove, a pensarle, a organizzarle, a viverle, solo per il piacere di farlo, per stare in compagnia e per rendere la vita meno noiosa e più divertente.</p>
+          <p>È stato “un pioniere” nel vero senso della parola, lo è stato per la pallamano, ma non solo, ha creato squadre di calcio dilettantistico (quello puro, quello dei campi di terra polverosi d’estate e infangati d’inverno), amava correre e lo faceva per le strade, per i campi, sempre e ovunque ci fosse la possibilità. Anche dopo il terribile incidente dal quale si salvò per miracolo, continuò ad animare la vita sportiva della nostra città, con lo spirito nobile del dilettante vero, di colui che in cambio non vuole niente, di chi gli basta vedere dei ragazzi correre dietro una palla per essere contento.</p>
+          <p>Le cose della vita lo portarono lontano e un giorno ci giunse l’amara notizia che una tremenda malattia se l’era portato via. Non abbiamo potuto salutarlo per l’ultima volta, non abbiamo potuto dimostrargli la nostra riconoscenza e quanto lo stimavamo e gli volevamo bene.</p>
+          <p>Nessuno di noi ha potuto portare un fiore sulla sua tomba.</p>
+          <p>Con questa nuova società ti abbiamo voluto ricordare come meritavi. La pallamano di Fasano gli deve molto, soprattutto la cosa più importante, la sua esistenza.</p>
+          <p>Sarai sempre con noi Roberto, anche se “solo” nel nome di una società e ricordati che tutti quelli che ti hanno conosciuto ti hanno voluto bene.</p>
+          <p class="grazie">Grazie per quello che hai fatto per noi!</p>
+          <p class="firma">Lino Alberto Soleti</p>
+        </div>
+      </div>
     </div>
   </section>
 
