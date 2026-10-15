@@ -1,10 +1,10 @@
 # Effetto Serra – sito della ASDP Roberto Serra Fasano
 
-Sito e web app della pallamano Serra Fasano, pubblicato su Netlify (`pallamano-serra.netlify.app`).
+Sito e web app della pallamano Serra Fasano, pubblicato su Netlify (`pallamanoserra.netlify.app`).
 
 ## Struttura
 - `index.html` – tutto il sito (testi, stile, calendario, classifica, rassegna stampa)
-- `sw.js` – funzionamento offline della web app. **A ogni modifica aumenta il numero in `VERSIONE`** (es. `effetto-serra-v19` → `effetto-serra-v20`)
+- `sw.js` – funzionamento offline della web app. **A ogni modifica aumenta il numero in `VERSIONE`** (es. `effetto-serra-v20` → `effetto-serra-v20`)
 - `manifest.webmanifest` e `icons/` – installazione come app
 
 ## Dati aggiornati ogni settimana (dentro `index.html`)
