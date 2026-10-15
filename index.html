@@ -57,6 +57,18 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .brand span{white-space:nowrap}
 .menu a{text-decoration:none;padding-block:6px;border-bottom:2px solid transparent}
 .menu a:hover{border-color:var(--oro);color:var(--oro-chiaro)}
+.menu{align-items:center}
+.menu>li{position:relative}
+section[id],[id="orari"],[id="classifica"]{scroll-margin-top:84px}
+.has-sub{display:flex;align-items:center;gap:2px}
+.sub-toggle{background:none;border:0;color:var(--oro-chiaro);cursor:pointer;padding:4px 2px;font:inherit;line-height:1}
+.sub-toggle span{display:inline-block;transition:transform .2s}
+.sub{display:none;position:absolute;top:100%;left:-16px;min-width:230px;list-style:none;margin:0;padding:14px 0 8px;z-index:30}
+.sub::before{content:"";position:absolute;inset:10px 0 0;background:var(--band-2);border-top:3px solid var(--oro);box-shadow:0 14px 30px rgba(0,0,0,.35);z-index:-1}
+.sub a{display:block;padding:10px 18px;border-bottom:0!important;letter-spacing:.06em}
+.sub a:hover{background:rgba(255,255,255,.06)}
+@media (min-width:1101px){.has-sub:hover .sub,.has-sub:focus-within .sub,.has-sub.open .sub{display:block}.has-sub:hover .sub-toggle span,.has-sub.open .sub-toggle span{transform:rotate(180deg)}}
+
 .burger{display:none;background:none;border:1px solid var(--oro);color:var(--on-dark);font-family:var(--label);text-transform:uppercase;letter-spacing:.1em;padding:8px 12px;border-radius:2px;cursor:pointer}
 @media (max-width:1100px){
   .burger{display:block}
@@ -64,6 +76,15 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
   .menu.open{display:flex}
   .menu li{border-top:1px solid rgba(255,255,255,.08)}
   .menu a{display:block;padding-block:14px}
+  .has-sub{flex-wrap:wrap;justify-content:space-between}
+  .has-sub>a{flex:1}
+  .sub-toggle{padding:10px 6px;font-size:1.1rem}
+  .sub{position:static;width:100%;min-width:0;padding:0 0 8px 14px;border-left:2px solid var(--oro)}
+  .sub::before{display:none}
+  .sub li{border-top:0}
+  .sub a{padding:9px 0;text-transform:none;letter-spacing:.02em;font-size:1rem;font-weight:500}
+  .has-sub.open .sub{display:block}
+  .has-sub.open .sub-toggle span{transform:rotate(180deg)}
 }
 
 /* hero */
@@ -359,11 +380,27 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
     </a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul class="menu" id="menu">
-      <li><a href="#societa">Società</a></li>
-      <li><a href="#roberto-serra">Roberto Serra</a></li>
-      <li><a href="#articolo33">Art. 33</a></li>
-      <li><a href="#squadre">Attività Giovanile</a></li>
-      <li><a href="#calendario">Silver</a></li>
+      <li class="has-sub"><a href="#societa">Società</a><button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-societa" aria-label="Mostra le voci di Società"><span aria-hidden="true">▾</span></button>
+        <ul class="sub" id="sub-societa">
+          <li><a href="#societa">Storia e Mission</a></li>
+          <li><a href="#roberto-serra">Roberto Serra</a></li>
+          <li><a href="#articolo33">Art. 33</a></li>
+          <li><a href="#scuole">Progetti scolastici</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="#squadre">Attività Giovanile</a><button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-giovanile" aria-label="Mostra le voci di Attività Giovanile"><span aria-hidden="true">▾</span></button>
+        <ul class="sub" id="sub-giovanile">
+          <li><a href="#squadre">Categorie</a></li>
+          <li><a href="#orari">Orari e palestre</a></li>
+          <li><a href="#iscrizioni">Iscrizioni</a></li>
+        </ul>
+      </li>
+      <li class="has-sub"><a href="#calendario">Silver</a><button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-silver" aria-label="Mostra le voci di Silver"><span aria-hidden="true">▾</span></button>
+        <ul class="sub" id="sub-silver">
+          <li><a href="#calendario">Calendario e risultati</a></li>
+          <li><a href="#classifica">Classifica</a></li>
+        </ul>
+      </li>
       <li><a href="#stampa">Stampa</a></li>
       <li><a href="#contatti">Contatti</a></li>
     </ul>
@@ -667,6 +704,14 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
 burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
 menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false')}});
+document.querySelectorAll('.sub-toggle').forEach(t=>t.addEventListener('click',e=>{
+  e.stopPropagation();const li=t.closest('.has-sub'),o=!li.classList.contains('open');
+  document.querySelectorAll('.has-sub.open').forEach(x=>{if(x!==li){x.classList.remove('open');x.querySelector('.sub-toggle').setAttribute('aria-expanded','false')}});
+  li.classList.toggle('open',o);t.setAttribute('aria-expanded',o);
+}));
+menu.addEventListener('click',e=>{if(e.target.tagName==='A')e.target.blur();if(e.target.tagName==='A')document.querySelectorAll('.has-sub.open').forEach(x=>{x.classList.remove('open');x.querySelector('.sub-toggle').setAttribute('aria-expanded','false')})});
+document.addEventListener('click',e=>{if(!e.target.closest('.has-sub'))document.querySelectorAll('.has-sub.open').forEach(x=>{x.classList.remove('open');x.querySelector('.sub-toggle').setAttribute('aria-expanded','false')})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.has-sub.open').forEach(x=>x.classList.remove('open'))});
 
 // RISULTATI SERIE A SILVER – girone B. Una riga per partita: [giornata, squadra di casa, squadra ospite, gol casa, gol ospite]
 // Aggiungi qui le nuove partite: calendario e classifica si aggiornano da soli. Scrivi i nomi sempre allo stesso modo.
