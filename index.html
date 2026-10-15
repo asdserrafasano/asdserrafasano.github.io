@@ -320,6 +320,16 @@ img{max-width:100%}
 .lettera .grazie{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--accent-text);text-align:left!important;margin-top:8px}
 .lettera .firma{font-style:italic;color:var(--muted);text-align:right!important}
 @media (max-width:480px){.lettera{padding-left:16px}}
+
+/* link nel testo */
+.in-link,.ext-link{color:var(--accent-text);font-weight:600;text-decoration:underline;text-decoration-color:var(--oro);text-decoration-thickness:2px;text-underline-offset:3px}
+.in-link:hover,.ext-link:hover{text-decoration-color:currentColor}
+.ext-link{white-space:nowrap}
+.art-link{margin-top:14px}
+.art-link a{color:var(--oro-chiaro);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.art-link a:hover{color:#fff}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:28px}
+.cta-row span{color:var(--muted)}
 </style>
 
 </head>
@@ -387,7 +397,7 @@ img{max-width:100%}
       <div class="about">
         <div class="text">
           <h3>La storia</h3>
-          <p>L’ASD Polisportiva Roberto Serra è un’associazione sportiva costituita, nel 2008, per promuovere la pratica sportiva attraverso la Pallamano, disciplina olimpica, che come tutti gli sport di squadra educano alla condivisione e alla coesione per il raggiungimento di risultati importanti.</p>
+          <p>L’ASD Polisportiva <a class="in-link" href="#roberto-serra">Roberto Serra</a> è un’associazione sportiva costituita, nel 2008, per promuovere la pratica sportiva attraverso la Pallamano, disciplina olimpica, che come tutti gli sport di squadra educano alla condivisione e alla coesione per il raggiungimento di risultati importanti.</p>
           <p>“Una società giovane per i giovani”: con questa filosofia, la nostra Associazione si propone, allo stesso tempo, di contribuire allo sviluppo del tessuto socio-sportivo della nostra città proponendo e attuando progetti di promozione polisportiva con le scuole e le istituzioni del nostro territorio.</p>
           <p>“Effetto Serra”: così ha titolato la stampa per sintetizzare i risultati ottenuti in diciotto anni di attività che ci hanno permesso di diventare una società di primissimo piano a livello regionale.</p>
         </div>
@@ -450,6 +460,7 @@ img{max-width:100%}
         <p class="eyebrow">Costituzione italiana</p>
         <h2>Per noi l'attività sportiva<br>è <span>un diritto</span></h2>
         <blockquote>«La Repubblica riconosce il valore educativo, sociale e di promozione del benessere psicofisico dell'attività sportiva in tutte le sue forme.»<cite>Art. 33, ultimo comma · introdotto nel 2023</cite></blockquote>
+        <p class="art-link"><a href="https://www.normattiva.it/eli/id/2023/10/07/23G00147/ORIGINAL" target="_blank" rel="noopener">Leggi la legge costituzionale che ha inserito lo sport nell'articolo 33 (Normattiva) ↗</a></p>
         <div class="body">
           <p>Dal 2023 lo sport è scritto nella Costituzione. Noi lo mettiamo in pratica ogni giorno: se l'attività sportiva è un diritto, allora deve essere accessibile a tutti i ragazzi, senza costi.</p>
           <p>Ogni bambino e ogni ragazzo di Fasano che vuole giocare a pallamano trova da noi un posto in squadra, un allenatore e una maglia amaranto e oro.</p>
@@ -471,6 +482,8 @@ img{max-width:100%}
         <article class="team"><span class="age">Giovanile</span><h3>Under 16</h3><div class="tags"><span class="free">Gratuita</span></div><p>Impegno, crescita, divertimento: difesa, contropiede e lavoro tattico, il passo verso la Serie A Silver.</p><span class="slot">Palestra Zizzi<br>Mar 18:30–20:00 · Gio 16:30–18:00<br>Ven 18:30–20:00</span></article>
         <article class="team silver"><div><span class="age">Seconda serie nazionale</span><h3>Serie A Silver</h3></div><p>La nostra squadra senior, impegnata nel campionato nazionale con tanti ragazzi cresciuti nel nostro vivaio.</p></article>
       </div>
+
+      <div class="cta-row"><a class="btn gold" href="#iscrizioni">Iscriviti gratis</a><span>Dai 6 ai 18 anni l'attività è completamente gratuita.</span></div>
 
       <div class="timetable" id="orari">
         <h3>Orari allenamenti</h3>
@@ -524,7 +537,7 @@ img{max-width:100%}
       <div class="sec-head">
         <p class="eyebrow">Calendario partite</p>
         <h2>Serie A Silver</h2>
-        <p>Campionato maschile, girone B, stagione 2026/27: tutte le partite della Serra Fasano.</p>
+        <p>Campionato maschile, girone B, stagione 2026/27: tutte le partite della Serra Fasano. <a class="ext-link" href="https://www.federhandball.it/campionati-nazionali/serie-a-silver/" target="_blank" rel="noopener">Pagina ufficiale FIGH della Serie A Silver ↗</a></p>
       </div>
       <div class="next-match" id="next-match"></div>
       <div class="filters" role="group" aria-label="Filtra le partite">
