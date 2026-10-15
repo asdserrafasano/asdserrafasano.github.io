@@ -9,7 +9,7 @@ Sito e web app della pallamano Serra Fasano, pubblicato con GitHub Pages (`https
 
 ## Dati aggiornati ogni settimana (dentro `index.html`)
 - `const risultati=[...]` – risultati Serie A Silver girone B: `[giornata, casa, ospite, gol casa, gol ospite]`. Classifica e calendario si calcolano da soli.
-- `const partite=[...]` – calendario della Serra Fasano (22 giornate).
+- `const partite=[...]` – calendario della Serra Fasano (22 giornate). Campo facoltativo `tv:'https://www.youtube.com/watch?v=...'` per il link alla diretta/replica della partita su Pallamano TV FIGH.
 - `const articoli=[...]` – rassegna stampa "Dicono di noi": `{data:'AAAA-MM-GG', testata, titolo, link}`.
 
 Nomi squadre usati in `risultati`: Innotech Serra Fasano, Lions Teramo, Aretusa, Romagna, Camerano, CUS Palermo, Genea Lanzara, Monteprandone, Prime Service Sannio, TeamNetwork Albatro Nexgen, Puntoshop24 Putignano, Proger Pall. Chieti 1975.
