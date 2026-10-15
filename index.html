@@ -338,6 +338,10 @@ img{max-width:100%}
 .burger{flex:none}
 @media (max-width:560px){.brand b{font-size:.86rem;white-space:nowrap}.brand small{display:none}.brand img{width:32px}.brand{gap:8px}}
 .hero .lead{text-align:left!important}
+
+.privacy{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-family:var(--body);font-size:.88rem;color:#E7D6D1;line-height:1.45}
+.privacy input{width:auto;margin-top:3px;accent-color:var(--oro)}
+#f-invia:disabled{opacity:.6;cursor:wait}
 </style>
 
 </head>
@@ -598,7 +602,9 @@ img{max-width:100%}
           <li><div><b>Tesseramento</b><span>Certificato medico sportivo e tesseramento FIGH, ti aiutiamo noi con i moduli.</span></div></li>
         </ol>
       </div>
-      <form id="form" novalidate>
+      <form id="form" name="iscrizione" method="POST" data-netlify="true" netlify-honeypot="sito-web" novalidate>
+        <input type="hidden" name="form-name" value="iscrizione">
+        <p hidden><label>Non compilare questo campo <input name="sito-web"></label></p>
         <div class="row2">
           <label for="f-nome">Nome e cognome<input id="f-nome" name="nome" required autocomplete="name"></label>
           <label for="f-anno">Anno di nascita<input id="f-anno" name="anno" inputmode="numeric" placeholder="es. 2013"></label>
@@ -608,7 +614,8 @@ img{max-width:100%}
         </select></label>
         <label for="f-tel">Telefono o email<input id="f-tel" name="contatto" required></label>
         <label for="f-msg">Messaggio<textarea id="f-msg" name="msg" placeholder="Domande, esperienze sportive precedenti…"></textarea></label>
-        <button class="btn gold" type="submit">Invia richiesta</button>
+        <label class="privacy" for="f-privacy"><input type="checkbox" id="f-privacy" name="privacy" value="si" required> Acconsento all'uso dei dati inseriti solo per essere ricontattato dalla società in merito all'iscrizione. Se l'atleta è minorenne, la richiesta va inviata da un genitore.</label>
+        <button class="btn gold" type="submit" id="f-invia">Invia richiesta</button>
         <p class="ok" id="ok" hidden></p>
       </form>
     </div>
@@ -758,12 +765,21 @@ document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
   const done=()=>{b.textContent='Copiato';setTimeout(()=>b.textContent='Copia',1600)};
   try{navigator.clipboard.writeText(b.dataset.copy).then(done,()=>{b.textContent=b.dataset.copy})}catch(e){b.textContent=b.dataset.copy}
 }));
-document.getElementById('form').addEventListener('submit',e=>{
+document.getElementById('form').addEventListener('submit',async e=>{
   e.preventDefault();
-  const n=document.getElementById('f-nome'),c=document.getElementById('f-tel'),ok=document.getElementById('ok');
-  if(!n.value.trim()||!c.value.trim()){ok.hidden=false;ok.textContent='Inserisci nome e un recapito per essere ricontattato.';return}
-  ok.hidden=false;ok.textContent=`Grazie ${n.value.trim().split(' ')[0]}! Richiesta registrata (anteprima: per riceverla davvero va collegato il modulo a un'email o a un servizio).`;
-  e.target.reset();
+  const f=e.target,n=document.getElementById('f-nome'),c=document.getElementById('f-tel'),pv=document.getElementById('f-privacy'),ok=document.getElementById('ok'),bt=document.getElementById('f-invia');
+  ok.hidden=false;
+  if(!n.value.trim()||!c.value.trim()){ok.textContent='Inserisci nome e un recapito (telefono o email) per essere ricontattato.';return}
+  if(!pv.checked){ok.textContent='Per inviare la richiesta spunta la casella sul consenso.';return}
+  bt.disabled=true;ok.textContent='Invio in corso…';
+  try{
+    const r=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()});
+    if(!r.ok)throw new Error(r.status);
+    ok.textContent=`Grazie ${n.value.trim().split(' ')[0]}! Abbiamo ricevuto la tua richiesta: ti ricontatteremo al più presto.`;
+    f.reset();
+  }catch(err){
+    ok.textContent='Invio non riuscito. Riprova tra poco oppure chiamaci: Francesco 338 8525075 · Massimo 328 3748363.';
+  }finally{bt.disabled=false}
 });
 
 // Web app: registrazione del service worker e pulsante di installazione
