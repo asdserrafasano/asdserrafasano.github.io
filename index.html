@@ -379,6 +379,15 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
 .live-line .live-dot{display:inline-block;margin-right:8px;vertical-align:1px}
 
 .fx-tv{color:var(--accent-text);font-weight:600;text-decoration:underline;text-decoration-color:var(--oro);text-underline-offset:2px}
+
+/* link utili */
+.lk-group{font-size:1.3rem;color:var(--accent-text);margin:8px 0 14px}
+.lk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-bottom:28px}
+.lk{display:grid;gap:4px;padding:16px 18px;background:var(--surface);border:1.5px solid var(--line);border-left:4px solid var(--amaranto);text-decoration:none;color:var(--fg);border-radius:2px;transition:border-color .2s,transform .2s}
+.lk:hover{border-color:var(--oro);transform:translateY(-2px)}
+.lk b{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;color:var(--accent-text);line-height:1.1}
+.lk span{color:var(--muted);font-size:.95rem;line-height:1.35}
+.lk small{font-family:var(--label);letter-spacing:.06em;font-size:.8rem;color:var(--muted);margin-top:4px}
 </style>
 
 </head>
@@ -413,6 +422,7 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
         </ul>
       </li>
       <li><a href="#stampa">Stampa</a></li>
+      <li><a href="#link">Link</a></li>
       <li><a href="#contatti">Contatti</a></li>
     </ul>
   </div>
@@ -641,6 +651,31 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
       </div>
       <div class="press-list" id="press-list"></div>
       <button class="btn ghost press-more" id="press-more" type="button" hidden>Mostra tutti</button>
+    </div>
+  </section>
+
+  <section id="link" class="links">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Link utili</p>
+        <h2>Il mondo della pallamano</h2>
+        <p>I siti ufficiali delle federazioni e altri collegamenti utili per atleti, famiglie e appassionati.</p>
+      </div>
+        <h3 class="lk-group">Federazioni</h3>
+        <div class="lk-grid">
+          <a class="lk" href="https://www.ihf.info/" target="_blank" rel="noopener"><b>IHF</b><span>Federazione Internazionale di Pallamano</span><small>ihf.info ↗</small></a>
+          <a class="lk" href="https://www.eurohandball.com/" target="_blank" rel="noopener"><b>EHF</b><span>Federazione Europea di Pallamano</span><small>eurohandball.com ↗</small></a>
+          <a class="lk" href="https://www.federhandball.it/" target="_blank" rel="noopener"><b>FIGH</b><span>Federazione Italiana Giuoco Handball</span><small>federhandball.it ↗</small></a>
+          <a class="lk" href="https://www.federhandball.it/campionati-territoriali/" target="_blank" rel="noopener"><b>FIGH Puglia</b><span>Campionati territoriali e attività regionale</span><small>federhandball.it ↗</small></a>
+        </div>
+        <h3 class="lk-group">Altri siti utili</h3>
+        <div class="lk-grid">
+          <a class="lk" href="https://www.youtube.com/@PallamanoTVfigh/streams" target="_blank" rel="noopener"><b>Pallamano TV</b><span>Le dirette e i video della FIGH</span><small>youtube.com ↗</small></a>
+          <a class="lk" href="https://www.federhandball.it/campionati-nazionali/serie-a-silver/" target="_blank" rel="noopener"><b>Serie A Silver</b><span>Calendario e classifica ufficiali</span><small>federhandball.it ↗</small></a>
+          <a class="lk" href="https://www.coni.it/" target="_blank" rel="noopener"><b>CONI</b><span>Comitato Olimpico Nazionale Italiano</span><small>coni.it ↗</small></a>
+          <a class="lk" href="https://puglia.coni.it/" target="_blank" rel="noopener"><b>CONI Puglia</b><span>Comitato Regionale CONI Puglia</span><small>puglia.coni.it ↗</small></a>
+          <a class="lk" href="https://www.comune.fasano.br.it/" target="_blank" rel="noopener"><b>Comune di Fasano</b><span>Il sito istituzionale della nostra città</span><small>comune.fasano.br.it ↗</small></a>
+        </div>
     </div>
   </section>
 
