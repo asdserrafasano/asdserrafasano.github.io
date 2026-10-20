@@ -1,6 +1,6 @@
 // Service worker di Effetto Serra: rende l'app disponibile anche offline.
 // Quando aggiorni il sito, cambia il numero di versione qui sotto.
-const VERSIONE = 'effetto-serra-v45';
+const VERSIONE = 'effetto-serra-v46';
 const FILE_BASE = [
   './',
   './index.html',
