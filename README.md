@@ -1,6 +1,6 @@
 # Effetto Serra – sito della ASDP Roberto Serra Fasano
 
-Sito e web app della pallamano Serra Fasano, pubblicato con GitHub Pages (`https://asdserrafasano.github.io/`). Le richieste di iscrizione arrivano a asdserrafasano@gmail.com tramite FormSubmit.
+Sito e web app della pallamano Serra Fasano, pubblicato con GitHub Pages sul dominio `https://pallamanoserra.net/` (file `CNAME`; il vecchio indirizzo `https://asdserrafasano.github.io/` reindirizza al nuovo). Le richieste di iscrizione arrivano a asdserrafasano@gmail.com tramite FormSubmit.
 
 ## Struttura
 - `index.html` – tutto il sito (testi, stile, calendario, classifica, rassegna stampa)
