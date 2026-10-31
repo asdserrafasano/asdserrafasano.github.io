@@ -12,4 +12,8 @@ Sito e web app della pallamano Serra Fasano, pubblicato con GitHub Pages sul dom
 - `const partite=[...]` – calendario della Serra Fasano (22 giornate). Campo facoltativo `tv:'https://www.youtube.com/watch?v=...'` per il link alla diretta/replica della partita su Pallamano TV FIGH.
 - `const articoli=[...]` – rassegna stampa "Dicono di noi": `{data:'AAAA-MM-GG', testata, titolo, link}`.
 
+## Organico (testo in `index.html`)
+- Sezione `#organigramma` (menu Società): organigramma societario.
+- Blocco `#rosa` dentro la sezione Silver: rosa per ruolo e staff tecnico. Da aggiornare a ogni nuova stagione o cambio di organico.
+
 Nomi squadre usati in `risultati`: Innotech Serra Fasano, Lions Teramo, Aretusa, Romagna, Camerano, CUS Palermo, Genea Lanzara, Monteprandone, Prime Service Sannio, TeamNetwork Albatro Nexgen, Puntoshop24 Putignano, Proger Pall. Chieti 1975.

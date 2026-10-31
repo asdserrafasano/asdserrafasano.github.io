@@ -59,7 +59,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .menu a:hover{border-color:var(--oro);color:var(--oro-chiaro)}
 .menu{align-items:center}
 .menu>li{position:relative}
-section[id],[id="orari"],[id="classifica"]{scroll-margin-top:84px}
+section[id],[id="orari"],[id="classifica"],[id="rosa"]{scroll-margin-top:84px}
 .has-sub{display:flex;align-items:center;gap:2px}
 .sub-toggle{background:none;border:0;color:var(--oro-chiaro);cursor:pointer;padding:4px 2px;font:inherit;line-height:1}
 .sub-toggle span{display:inline-block;transition:transform .2s}
@@ -388,6 +388,44 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
 .lk b{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;color:var(--accent-text);line-height:1.1}
 .lk span{color:var(--muted);font-size:.95rem;line-height:1.35}
 .lk small{font-family:var(--label);letter-spacing:.06em;font-size:.8rem;color:var(--muted);margin-top:4px}
+/* organigramma */
+.org-top{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line)}
+.org-card{background:var(--surface);padding:22px 20px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.org-card span{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;color:var(--muted)}
+.org-card b{font-family:var(--display);font-weight:800;font-size:1.6rem;text-transform:uppercase;line-height:1.05;color:var(--accent-text)}
+.org-card.main{background:var(--amaranto);color:var(--on-dark);border-bottom:4px solid var(--oro)}
+.org-card.main span{color:var(--oro-chiaro)}
+.org-card.main b{color:var(--oro)}
+.org-sec{margin-top:48px}
+.org-sec h3{font-size:1.45rem;color:var(--accent-text);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--oro);display:inline-block}
+.names{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.names li{padding:8px 14px;background:var(--surface);border:1.5px solid var(--line);border-left:3px solid var(--amaranto);font-weight:600;border-radius:2px}
+.org-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+.org-cols .names{flex-direction:column;align-items:flex-start}
+.org-list{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin:0;border-top:2px solid var(--amaranto)}
+.org-list div{display:flex;justify-content:space-between;align-items:baseline;gap:6px 16px;padding-block:14px;border-bottom:1px solid var(--line);min-width:0}
+.org-list dt{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.82rem;color:var(--muted)}
+.org-list dd{margin:0;font-weight:600;text-align:right}
+@media (max-width:900px){.org-top{grid-template-columns:1fr 1fr}.org-cols{grid-template-columns:1fr}.org-list{grid-template-columns:1fr}}
+@media (max-width:480px){.org-top{grid-template-columns:1fr}.org-list div{flex-direction:column}.org-list dd{text-align:left}}
+
+/* rosa Serie A Silver */
+.roster{margin-top:56px}
+.roster h3{font-size:2rem;color:var(--accent-text);margin-bottom:16px}
+.roster h3 small{font-family:var(--label);font-size:.9rem;font-weight:500;letter-spacing:.1em;color:var(--muted);margin-left:8px}
+.ro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:2px solid var(--line);border-top-color:var(--amaranto)}
+.ro-group{background:var(--surface);padding:18px 20px;min-width:0}
+.ro-group h4{margin:0 0 6px;display:flex;justify-content:space-between;align-items:baseline;font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.88rem;color:var(--accent-text)}
+.ro-group h4 small{color:var(--muted);font-weight:500;letter-spacing:.06em}
+.ro-group ul{list-style:none;margin:0;padding:0}
+.ro-group li{padding:9px 0;border-bottom:1px solid var(--line);font-weight:600}
+.ro-group li:last-child{border-bottom:0}
+.ro-staff{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 28px;margin-top:2px;padding:18px 22px;background:var(--amaranto);color:var(--on-dark);border-bottom:4px solid var(--oro)}
+.ro-staff span{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.88rem;color:var(--oro-chiaro)}
+.ro-staff ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 24px}
+.ro-staff li{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1.1}
+@media (max-width:900px){.ro-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.ro-grid{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -403,6 +441,7 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
       <li class="has-sub"><a href="#societa">Società</a><button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-societa" aria-label="Mostra le voci di Società"><span aria-hidden="true">▾</span></button>
         <ul class="sub" id="sub-societa">
           <li><a href="#societa">Storia e Mission</a></li>
+          <li><a href="#organigramma">Organigramma</a></li>
           <li><a href="#roberto-serra">Roberto Serra</a></li>
           <li><a href="#articolo33">Art. 33</a></li>
           <li><a href="#scuole">Progetti scolastici</a></li>
@@ -419,6 +458,7 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
         <ul class="sub" id="sub-silver">
           <li><a href="#calendario">Calendario e risultati</a></li>
           <li><a href="#classifica">Classifica</a></li>
+          <li><a href="#rosa">Rosa e staff tecnico</a></li>
         </ul>
       </li>
       <li><a href="#stampa">Stampa</a></li>
@@ -496,6 +536,41 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
         <div><dt>Unisce</dt><dd>Fai nuove amicizie in un gruppo di ragazze e ragazzi che condividono la stessa passione.</dd></div>
         <div><dt>Squadra</dt><dd>Vivi il valore della squadra, dalla Propaganda fino alla Serie A Silver.</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <section id="organigramma">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">La società · stagione 2026/27</p>
+        <h2>Organigramma</h2>
+      </div>
+      <div class="org-top">
+        <div class="org-card main"><span>Presidente</span><b>Lino Alberto Soleti</b></div>
+        <div class="org-card"><span>Presidente onorario</span><b>Nicola Gentile</b></div>
+        <div class="org-card"><span>Vice presidente</span><b>Massimiliano De Mola</b></div>
+        <div class="org-card"><span>Direttore sportivo</span><b>Francesco Guarini</b></div>
+      </div>
+      <div class="org-sec">
+        <h3>Soci fondatori</h3>
+        <ul class="names"><li>Giovanni Fovio</li><li>Nicola Gentile</li><li>Francesco Guarini</li><li>Leonardo Guarini</li><li>Lino Alberto Soleti</li><li>Francesco Trapani</li><li>Nicola Trapani</li><li>Salvatore Trapani</li><li>Daniele Vinci</li></ul>
+      </div>
+      <div class="org-cols">
+        <div class="org-sec"><h3>Dirigenti Serie A Silver</h3><ul class="names"><li>Andrea Martucci</li><li>Antonio Trapani</li><li>Leonardo Pugliese</li></ul></div>
+        <div class="org-sec"><h3>Dirigenti settore giovanile</h3><ul class="names"><li>Giovanni Monopoli</li><li>Donato Raimondi</li><li>Lucia Rosato</li><li>Martino Vinci</li></ul></div>
+        <div class="org-sec"><h3>Dirigenti promozione e scuola</h3><ul class="names"><li>Palma Semeraro</li><li>Serena Tauro</li></ul></div>
+      </div>
+      <div class="org-sec">
+        <h3>Staff e collaboratori</h3>
+        <dl class="org-list">
+          <div><dt>Responsabile Safeguarding</dt><dd>Dr. Giovanni Tinella</dd></div>
+          <div><dt>Area medica</dt><dd>Dr. Giuseppe Monopoli</dd></div>
+          <div><dt>Fisioterapista</dt><dd>Fisios</dd></div>
+          <div><dt>Pubbliche relazioni</dt><dd>Albano Laera</dd></div>
+          <div><dt>Comunicazione e immagine</dt><dd>Eg Visual – Fasano</dd></div>
+          <div><dt>Consulenza e marketing</dt><dd>Giancarlo Rosato – MPA studio</dd></div>
+        </dl>
+      </div>
     </div>
   </section>
 
@@ -638,6 +713,16 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
           </table>
         </div>
         <p class="note">Classifica calcolata dai risultati: 2 punti per la vittoria, 1 per il pareggio. A parità di punti l'ordine è indicativo; fa fede la classifica ufficiale FIGH.</p>
+      </div>
+      <div class="roster" id="rosa">
+        <h3>Rosa e staff tecnico <small>stagione 2026/27</small></h3>
+        <div class="ro-grid">
+          <div class="ro-group"><h4>Portieri <small>4</small></h4><ul><li>David Brandi</li><li>Leonardo Potone</li><li>Marco Tuveri</li><li>Salvatore Trapani</li></ul></div>
+          <div class="ro-group"><h4>Ali <small>7</small></h4><ul><li>Davide Vicenti</li><li>Francesco Raimondi</li><li>Jeangel Alexander Granchelli Ramos</li><li>Luca Lapadula</li><li>Matteo De Carlo</li><li>Nicola Legrottaglie</li><li>Riccardo Lamberto</li></ul></div>
+          <div class="ro-group"><h4>Terzini <small>7</small></h4><ul><li>Alessio Lamberto</li><li>Alex Veronese</li><li>Daniele Berardi</li><li>Giovanni Coletta</li><li>Luigi Passiatore</li><li>Marco Mottola</li><li>Roberto Bucco</li></ul></div>
+          <div class="ro-group"><h4>Pivot <small>3</small></h4><ul><li>Flaviano Melillo</li><li>Silvano La Ghezza</li><li>Umberto Giannoccaro</li></ul></div>
+        </div>
+        <div class="ro-staff"><span>Staff tecnico</span><ul><li>Alessandro Tarafino</li><li>Francesco Trapani</li><li>Massimo Cassone</li></ul></div>
       </div>
     </div>
   </section>
