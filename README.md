@@ -12,6 +12,8 @@ Sito e web app della pallamano Serra Fasano, pubblicato con GitHub Pages sul dom
 - `const partite=[...]` – calendario della Serra Fasano (22 giornate). Campo facoltativo `tv:'https://www.youtube.com/watch?v=...'` per il link alla diretta/replica della partita su Pallamano TV FIGH.
 - `const articoli=[...]` – rassegna stampa "Dicono di noi": `{data:'AAAA-MM-GG', testata, titolo, link}`.
 
+- `const giovanili={...}` – campionati Under 14 (Area 8, girone A) e Under 16 (Area 8, girone Nico): una riga per partita del girone `[giornata, 'AAAA-MM-GGTHH:MM', casa, ospite, gol casa, gol ospite]`, con `null,null` finché non c'è il risultato. Calendario e classifica si calcolano da soli. Fonti FIGH: https://www.federhandball.it/campionati-territoriali/area-8/girone/under-14-maschile-area-8-girone-a/ e https://www.federhandball.it/campionati-territoriali/area-8/girone/under-16-maschile-area-8-girone-nico/
+
 ## Organico (testo in `index.html`)
 - Sezione `#organigramma` (menu Società): organigramma societario.
 - Blocco `#rosa` dentro la sezione Silver: rosa per ruolo e staff tecnico. Da aggiornare a ogni nuova stagione o cambio di organico.

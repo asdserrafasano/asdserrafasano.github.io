@@ -59,7 +59,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .menu a:hover{border-color:var(--oro);color:var(--oro-chiaro)}
 .menu{align-items:center}
 .menu>li{position:relative}
-section[id],[id="orari"],[id="classifica"],[id="rosa"]{scroll-margin-top:84px}
+section[id],[id="orari"],[id="classifica"],[id="rosa"],[id="campionati-giovanili"]{scroll-margin-top:84px}
 .has-sub{display:flex;align-items:center;gap:2px}
 .sub-toggle{background:none;border:0;color:var(--oro-chiaro);cursor:pointer;padding:4px 2px;font:inherit;line-height:1}
 .sub-toggle span{display:inline-block;transition:transform .2s}
@@ -239,9 +239,9 @@ section{padding-block:88px}
 .tag.casa{background:var(--amaranto);color:var(--on-dark)}
 .tag.trasf{border:1.5px solid var(--oro);color:var(--accent-text)}
 .note{margin-top:16px;color:var(--muted);font-size:.9rem;font-style:italic}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-.filters button{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;padding:8px 14px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:2px;cursor:pointer}
-.filters button[aria-pressed="true"]{background:var(--amaranto);border-color:var(--amaranto);color:var(--on-dark)}
+.filters,.giov-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.filters button,.giov-tabs button{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;padding:8px 14px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:2px;cursor:pointer}
+.filters button[aria-pressed="true"],.giov-tabs button[aria-pressed="true"]{background:var(--amaranto);border-color:var(--amaranto);color:var(--on-dark)}
 @media (max-width:560px){.fx{grid-template-columns:80px 1fr}.fx .tag{grid-column:2;justify-self:start}}
 
 /* iscrizioni */
@@ -426,6 +426,13 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
 .ro-staff li{font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1.1}
 @media (max-width:900px){.ro-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:480px){.ro-grid{grid-template-columns:1fr}}
+/* campionati giovanili */
+.giovanili{margin-top:56px}
+.giovanili>h3{font-size:2rem;color:var(--accent-text);margin-bottom:16px}
+.gv-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 20px;margin-bottom:14px}
+.gv-head p{font-family:var(--label);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.88rem;color:var(--muted)}
+.giovanili .note{text-align:left}
+.gv-sub{font-size:1.4rem;color:var(--accent-text);margin:36px 0 14px}
 </style>
 
 </head>
@@ -451,6 +458,7 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
         <ul class="sub" id="sub-giovanile">
           <li><a href="#squadre">Categorie</a></li>
           <li><a href="#orari">Orari e palestre</a></li>
+          <li><a href="#campionati-giovanili">Campionati U14 e U16</a></li>
           <li><a href="#iscrizioni">Iscrizioni</a></li>
         </ul>
       </li>
@@ -663,6 +671,18 @@ a.team.silver:hover .go{background:var(--oro);color:var(--amaranto-deep)}
             </table>
           </div>
         </div>
+      </div>
+      <div class="giovanili" id="campionati-giovanili">
+        <h3>Campionati giovanili</h3>
+        <div class="giov-tabs" role="group" aria-label="Scegli il campionato">
+          <button type="button" data-giov="u14" aria-pressed="true">Under 14</button>
+          <button type="button" data-giov="u16" aria-pressed="false">Under 16</button>
+        </div>
+        <div class="gv-head"><p id="gv-girone"></p><a class="ext-link" id="gv-fonte" href="#" target="_blank" rel="noopener">Calendario e classifica ufficiali FIGH ↗</a></div>
+        <div class="fixtures" id="gv-partite"></div>
+        <h4 class="gv-sub">Classifica <small id="gv-giornata"></small></h4>
+        <div id="gv-classifica"></div>
+        <p class="note">Classifica calcolata dai risultati: 2 punti per la vittoria, 1 per il pareggio. Date e orari possono subire variazioni; fanno fede calendario e classifica ufficiali FIGH.</p>
       </div>
     </div>
   </section>
@@ -988,6 +1008,134 @@ btnInst.addEventListener('click',async()=>{if(!installEvt)return;installEvt.prom
 window.addEventListener('appinstalled',()=>{btnInst.hidden=true});
 const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone;
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone){document.getElementById('ios-hint').hidden=false}
+
+// CAMPIONATI GIOVANILI – una riga per partita del girone: [giornata, 'data e ora', 'casa', 'ospite', gol casa, gol ospite]. Per un risultato sostituisci null,null con i gol (es. 24,18)
+const SEDI={'Innotech Serra Fasano':'Palestra Zizzi (IPSAR), Fasano','Handball New Team Fasano':'Palestra Zizzi (IPSAR), Fasano','Pallamano Noci':'Palazzetto De Luca Resta, Noci','Pallamano Putignano':'Palestra S.M.S. Stefano da Putignano, Putignano','Fidelis Andria':'PalaSport, Andria','Pallamano Conversano':'PalaSport San Giacomo, Conversano','Pallamano Conversano A':'PalaSport San Giacomo, Conversano','Pallamano Conversano Norba':'PalaSport San Giacomo, Conversano','Pallamano Altamura':'Palazzetto dello Sport, Altamura'};
+const giovanili={
+ u14:{girone:'Under 14 maschile · Area 8 · Girone A',fonte:'https://www.federhandball.it/campionati-territoriali/area-8/girone/under-14-maschile-area-8-girone-a/',partite:[
+  [1,'2026-11-15T11:00','Fidelis Andria','Pallamano Putignano',null,null],
+  [1,'2026-11-15T11:00','Pallamano Noci','Handball New Team Fasano',null,null],
+  [1,'2026-11-15T11:00','Innotech Serra Fasano','Pallamano Altamura',null,null],
+  [1,'2026-11-15T16:30','Pallamano Conversano A','Pallamano Conversano Norba',null,null],
+  [2,'2026-11-22T11:30','Pallamano Altamura','Pallamano Conversano A',null,null],
+  [2,'2026-11-22T17:00','Pallamano Conversano Norba','Pallamano Noci',null,null],
+  [2,'2026-11-23T18:45','Pallamano Putignano','Innotech Serra Fasano',null,null],
+  [2,'2026-12-06T11:00','Handball New Team Fasano','Fidelis Andria',null,null],
+  [3,'2026-12-13T11:00','Pallamano Noci','Pallamano Altamura',null,null],
+  [3,'2026-12-13T11:00','Innotech Serra Fasano','Pallamano Conversano A',null,null],
+  [3,'2026-12-13T16:30','Fidelis Andria','Pallamano Conversano Norba',null,null],
+  [3,'2026-12-16T18:30','Pallamano Putignano','Handball New Team Fasano',null,null],
+  [4,'2026-12-20T12:00','Pallamano Altamura','Fidelis Andria',null,null],
+  [4,'2026-12-21T17:00','Pallamano Conversano A','Pallamano Noci',null,null],
+  [4,'2026-12-22T16:30','Handball New Team Fasano','Innotech Serra Fasano',null,null],
+  [4,'2026-12-23T17:30','Pallamano Conversano Norba','Pallamano Putignano',null,null],
+  [5,'2027-01-04T18:30','Pallamano Putignano','Pallamano Altamura',null,null],
+  [5,'2027-01-10T11:00','Fidelis Andria','Pallamano Conversano A',null,null],
+  [5,'2027-01-10T11:00','Handball New Team Fasano','Pallamano Conversano Norba',null,null],
+  [5,'2027-01-10T11:00','Pallamano Noci','Innotech Serra Fasano',null,null],
+  [6,'2027-01-17T11:00','Innotech Serra Fasano','Pallamano Conversano Norba',null,null],
+  [6,'2027-01-17T11:30','Pallamano Altamura','Handball New Team Fasano',null,null],
+  [6,'2027-01-17T16:00','Pallamano Conversano A','Pallamano Putignano',null,null],
+  [6,'2027-01-31T11:00','Pallamano Noci','Fidelis Andria',null,null],
+  [7,'2027-01-24T11:00','Handball New Team Fasano','Pallamano Conversano A',null,null],
+  [7,'2027-01-24T16:00','Pallamano Conversano Norba','Pallamano Altamura',null,null],
+  [7,'2027-01-25T18:45','Pallamano Putignano','Pallamano Noci',null,null],
+  [7,'2027-01-27T18:30','Fidelis Andria','Innotech Serra Fasano',null,null],
+  [8,'2027-02-05T17:30','Pallamano Putignano','Fidelis Andria',null,null],
+  [8,'2027-02-07T11:00','Pallamano Altamura','Innotech Serra Fasano',null,null],
+  [8,'2027-02-07T16:30','Pallamano Conversano Norba','Pallamano Conversano A',null,null],
+  [8,'2027-02-10T17:30','Handball New Team Fasano','Pallamano Noci',null,null],
+  [9,'2027-02-14T11:00','Innotech Serra Fasano','Pallamano Putignano',null,null],
+  [9,'2027-02-14T11:00','Pallamano Noci','Pallamano Conversano Norba',null,null],
+  [9,'2027-02-15T16:30','Pallamano Conversano A','Pallamano Altamura',null,null],
+  [9,'2027-02-15T18:00','Fidelis Andria','Handball New Team Fasano',null,null],
+  [10,'2027-02-21T11:00','Pallamano Altamura','Pallamano Noci',null,null],
+  [10,'2027-02-21T16:00','Pallamano Conversano Norba','Fidelis Andria',null,null],
+  [10,'2027-02-22T16:00','Pallamano Conversano A','Innotech Serra Fasano',null,null],
+  [10,'2027-03-01T18:00','Handball New Team Fasano','Pallamano Putignano',null,null],
+  [11,'2027-03-07T11:00','Fidelis Andria','Pallamano Altamura',null,null],
+  [11,'2027-03-07T11:00','Innotech Serra Fasano','Handball New Team Fasano',null,null],
+  [11,'2027-03-07T11:00','Pallamano Noci','Pallamano Conversano A',null,null],
+  [11,'2027-03-22T18:45','Pallamano Putignano','Pallamano Conversano Norba',null,null],
+  [12,'2027-03-14T11:00','Pallamano Altamura','Pallamano Putignano',null,null],
+  [12,'2027-03-14T11:00','Innotech Serra Fasano','Pallamano Noci',null,null],
+  [12,'2027-03-14T16:00','Pallamano Conversano Norba','Handball New Team Fasano',null,null],
+  [12,'2027-03-21T17:00','Pallamano Conversano A','Fidelis Andria',null,null],
+  [13,'2027-04-11T11:00','Handball New Team Fasano','Pallamano Altamura',null,null],
+  [13,'2027-04-11T16:00','Pallamano Conversano Norba','Innotech Serra Fasano',null,null],
+  [13,'2027-04-11T16:30','Fidelis Andria','Pallamano Noci',null,null],
+  [13,'2027-04-12T18:45','Pallamano Putignano','Pallamano Conversano A',null,null],
+  [14,'2027-04-18T11:00','Pallamano Altamura','Pallamano Conversano Norba',null,null],
+  [14,'2027-04-18T17:00','Pallamano Conversano A','Handball New Team Fasano',null,null],
+  [14,'2027-04-19T19:00','Pallamano Noci','Pallamano Putignano',null,null],
+  [14,'2027-04-20T19:30','Innotech Serra Fasano','Fidelis Andria',null,null]
+ ]},
+ u16:{girone:'Under 16 maschile · Area 8 · Girone Nico',fonte:'https://www.federhandball.it/campionati-territoriali/area-8/girone/under-16-maschile-area-8-girone-nico/',partite:[
+  [1,'2026-11-17T18:30','Pallamano Putignano','Pallamano Noci',null,null],
+  [1,'2026-11-17T18:30','Innotech Serra Fasano','Fidelis Andria',null,null],
+  [1,'2026-11-18T18:30','Handball New Team Fasano','Pallamano Conversano',null,null],
+  [2,'2026-11-23T19:30','Pallamano Noci','Handball New Team Fasano',null,null],
+  [2,'2026-12-02T18:30','Fidelis Andria','Pallamano Putignano',null,null],
+  [2,'2026-12-06T16:45','Pallamano Conversano','Innotech Serra Fasano',null,null],
+  [3,'2026-11-26T18:30','Pallamano Putignano','Pallamano Conversano',null,null],
+  [3,'2026-12-07T18:00','Fidelis Andria','Pallamano Noci',null,null],
+  [3,'2026-12-07T18:30','Handball New Team Fasano','Innotech Serra Fasano',null,null],
+  [4,'2026-12-13T18:00','Pallamano Conversano','Pallamano Noci',null,null],
+  [4,'2026-12-15T19:30','Innotech Serra Fasano','Pallamano Putignano',null,null],
+  [4,'2027-01-03T11:00','Handball New Team Fasano','Fidelis Andria',null,null],
+  [5,'2027-01-11T18:00','Fidelis Andria','Pallamano Conversano',null,null],
+  [5,'2027-01-11T19:00','Pallamano Noci','Innotech Serra Fasano',null,null],
+  [5,'2027-01-12T18:30','Pallamano Putignano','Handball New Team Fasano',null,null],
+  [6,'2027-01-17T19:00','Pallamano Conversano','Handball New Team Fasano',null,null],
+  [6,'2027-01-20T18:30','Fidelis Andria','Innotech Serra Fasano',null,null],
+  [6,'2027-01-24T11:00','Pallamano Noci','Pallamano Putignano',null,null],
+  [7,'2027-01-25T19:30','Innotech Serra Fasano','Pallamano Conversano',null,null],
+  [7,'2027-01-26T16:30','Handball New Team Fasano','Pallamano Noci',null,null],
+  [7,'2027-01-28T18:30','Pallamano Putignano','Fidelis Andria',null,null],
+  [8,'2027-01-31T18:00','Pallamano Conversano','Pallamano Putignano',null,null],
+  [8,'2027-02-02T19:30','Innotech Serra Fasano','Handball New Team Fasano',null,null],
+  [8,'2027-02-07T11:00','Pallamano Noci','Fidelis Andria',null,null],
+  [9,'2027-02-15T19:00','Pallamano Noci','Pallamano Conversano',null,null],
+  [9,'2027-02-16T18:30','Pallamano Putignano','Innotech Serra Fasano',null,null],
+  [9,'2027-02-17T18:30','Fidelis Andria','Handball New Team Fasano',null,null],
+  [10,'2027-02-20T19:00','Pallamano Conversano','Fidelis Andria',null,null],
+  [10,'2027-02-24T18:30','Handball New Team Fasano','Pallamano Putignano',null,null],
+  [10,'2027-03-01T20:30','Innotech Serra Fasano','Pallamano Noci',null,null]
+ ]}
+};
+(function(){
+  const box=document.getElementById('gv-partite');if(!box)return;
+  function rigaG(r,next){
+    const [g,data,a,b,x,y]=r,dt=new Date(data),casa=a===NOI,avv=casa?b:a,fatta=dt<oggi,ora=data.slice(11);
+    const t=casa?`<b>Serra Fasano</b> – ${avv}`:`${avv} – <b>Serra Fasano</b>`;
+    let stato;
+    if(x!==null&&y!==null){const noi=casa?x:y,loro=casa?y:x,e=noi>loro?'vinta':noi<loro?'persa':'pari';
+      stato=`<span class="tag ris ${e}" title="${e==='vinta'?'Vittoria':e==='persa'?'Sconfitta':'Pareggio'}">${x} - ${y}</span>`;}
+    else stato=fatta?`<span class="tag giocata">Giocata</span>`:`<span class="tag ${casa?'casa':'trasf'}">${casa?'In casa':'Trasferta'}</span>`;
+    return `<div class="fx${fatta?' past':''}${next?' next':''}"><div class="date">${dt.getDate()} ${MM[dt.getMonth()]}<small>${GG[dt.getDay()]} · ${ora}</small></div><div class="match">${t}<small>${g}ª giornata · ${SEDI[a]||''}</small></div>${stato}</div>`;
+  }
+  function show(k){
+    const c=giovanili[k];
+    document.getElementById('gv-girone').textContent=c.girone;
+    document.getElementById('gv-fonte').href=c.fonte;
+    const mie=c.partite.filter(r=>r[2]===NOI||r[3]===NOI).sort((p,q)=>p[1]<q[1]?-1:1);
+    const prox=mie.find(r=>r[4]===null&&new Date(r[1])>=oggi);
+    box.innerHTML=mie.map(r=>rigaG(r,r===prox)).join('');
+    const T={};c.partite.forEach(r=>{for(const n of [r[2],r[3]])T[n]=T[n]||{n,G:0,V:0,N:0,P:0,GF:0,GS:0}});
+    const giocate=c.partite.filter(r=>r[4]!==null&&r[5]!==null);
+    giocate.forEach(([g,d,a,b,x,y])=>{const A=T[a],B=T[b];A.G++;B.G++;A.GF+=x;A.GS+=y;B.GF+=y;B.GS+=x;if(x>y){A.V++;B.P++}else if(x<y){B.V++;A.P++}else{A.N++;B.N++}});
+    const gmax=Math.max(0,...giocate.map(r=>r[0]));
+    document.getElementById('gv-giornata').textContent=gmax?`dopo la ${gmax}ª giornata`:'';
+    const cb=document.getElementById('gv-classifica');
+    if(!giocate.length){cb.innerHTML='<p class="note">La classifica sarà disponibile dopo la prima giornata.</p>';return}
+    const cl=Object.values(T).map(t=>(t.Pt=2*t.V+t.N,t.DR=t.GF-t.GS,t)).sort((p,q)=>q.Pt-p.Pt||q.DR-p.DR||q.GF-p.GF||p.n.localeCompare(q.n));
+    cb.innerHTML=`<div class="cl-wrap"><table class="cl"><thead><tr><th scope="col">#</th><th scope="col">Squadra</th><th scope="col" title="Punti">Pt</th><th scope="col" title="Giocate">G</th><th scope="col" title="Vinte">V</th><th scope="col" title="Pareggiate">N</th><th scope="col" title="Perse">P</th><th scope="col" title="Gol fatti">GF</th><th scope="col" title="Gol subiti">GS</th><th scope="col" title="Differenza reti">DR</th></tr></thead><tbody>${cl.map((t,i)=>`<tr${t.n===NOI?' class="noi"':''}><td>${i+1}</td><th scope="row">${t.n}</th><td class="pt">${t.Pt}</td><td>${t.G}</td><td>${t.V}</td><td>${t.N}</td><td>${t.P}</td><td>${t.GF}</td><td>${t.GS}</td><td>${t.DR>0?'+':''}${t.DR}</td></tr>`).join('')}</tbody></table></div>`;
+  }
+  document.querySelectorAll('.giov-tabs button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.giov-tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));show(b.dataset.giov);
+  }));
+  show('u14');
+})();
 
 // RASSEGNA STAMPA – stagione 2026/27. Per aggiungere un articolo copia una riga e cambia data (anno-mese-giorno), testata, titolo e link.
 const articoli=[
