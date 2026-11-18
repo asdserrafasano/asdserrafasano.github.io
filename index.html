@@ -912,7 +912,13 @@ const risultati=[
   [7,'Romagna','Puntoshop24 Putignano',34,16],
   [7,'Aretusa','Camerano',38,38],
   [7,'TeamNetwork Albatro Nexgen','Prime Service Sannio',33,22],
-  [7,'Innotech Serra Fasano','Monteprandone',26,22]
+  [7,'Innotech Serra Fasano','Monteprandone',26,22],
+  [8,'Puntoshop24 Putignano','TeamNetwork Albatro Nexgen',41,35],
+  [8,'CUS Palermo','Aretusa',27,31],
+  [8,'Genea Lanzara','Lions Teramo',31,31],
+  [8,'Monteprandone','Proger Pall. Chieti 1975',30,29],
+  [8,'Camerano','Romagna',27,34],
+  [8,'Prime Service Sannio','Innotech Serra Fasano',23,25]
 ];
 const NOI='Innotech Serra Fasano';
 const partite=[ // Serie A Silver maschile, girone B – calendario FIGH. Per il link al video della partita aggiungi tv:'https://www.youtube.com/watch?v=...'. Per un risultato scrivi ris:'28-25' (prima i gol di casa)
@@ -1019,10 +1025,10 @@ if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!standalone){document.getEleme
 const SEDI={'Innotech Serra Fasano':'Palestra Zizzi (IPSAR), Fasano','Handball New Team Fasano':'Palestra Zizzi (IPSAR), Fasano','Pallamano Noci':'Palazzetto De Luca Resta, Noci','Pallamano Putignano':'Palestra S.M.S. Stefano da Putignano, Putignano','Fidelis Andria':'PalaSport, Andria','Pallamano Conversano':'PalaSport San Giacomo, Conversano','Pallamano Conversano A':'PalaSport San Giacomo, Conversano','Pallamano Conversano Norba':'PalaSport San Giacomo, Conversano','Pallamano Altamura':'Palazzetto dello Sport, Altamura'};
 const giovanili={
  u14:{girone:'Under 14 maschile · Area 8 · Girone A',fonte:'https://www.federhandball.it/campionati-territoriali/area-8/girone/under-14-maschile-area-8-girone-a/',partite:[
-  [1,'2026-11-15T11:00','Fidelis Andria','Pallamano Putignano',null,null],
-  [1,'2026-11-15T11:00','Pallamano Noci','Handball New Team Fasano',null,null],
+  [1,'2026-11-15T10:30','Fidelis Andria','Pallamano Putignano',10,35],
+  [1,'2026-11-15T11:00','Pallamano Noci','Handball New Team Fasano',28,17],
   [1,'2026-11-15T11:00','Innotech Serra Fasano','Pallamano Altamura',null,null],
-  [1,'2026-11-15T16:30','Pallamano Conversano A','Pallamano Conversano Norba',null,null],
+  [1,'2026-11-15T16:30','Pallamano Conversano A','Pallamano Conversano Norba',49,22],
   [2,'2026-11-22T11:30','Pallamano Altamura','Pallamano Conversano A',null,null],
   [2,'2026-11-22T17:00','Pallamano Conversano Norba','Pallamano Noci',null,null],
   [2,'2026-11-23T18:45','Pallamano Putignano','Innotech Serra Fasano',null,null],
@@ -1077,8 +1083,8 @@ const giovanili={
   [14,'2027-04-20T19:30','Innotech Serra Fasano','Fidelis Andria',null,null]
  ]},
  u16:{girone:'Under 16 maschile · Area 8 · Girone Nico',fonte:'https://www.federhandball.it/campionati-territoriali/area-8/girone/under-16-maschile-area-8-girone-nico/',partite:[
-  [1,'2026-11-17T18:30','Pallamano Putignano','Pallamano Noci',null,null],
-  [1,'2026-11-17T18:30','Innotech Serra Fasano','Fidelis Andria',null,null],
+  [1,'2026-11-17T18:30','Pallamano Putignano','Pallamano Noci',72,10],
+  [1,'2026-11-17T19:30','Innotech Serra Fasano','Fidelis Andria',29,23],
   [1,'2026-11-18T18:30','Handball New Team Fasano','Pallamano Conversano',null,null],
   [2,'2026-11-23T19:30','Pallamano Noci','Handball New Team Fasano',null,null],
   [2,'2026-12-02T18:30','Fidelis Andria','Pallamano Putignano',null,null],
@@ -1145,6 +1151,13 @@ const giovanili={
 
 // RASSEGNA STAMPA – stagione 2026/27. Per aggiungere un articolo copia una riga e cambia data (anno-mese-giorno), testata, titolo e link.
 const articoli=[
+  {data:'2026-11-17',testata:'HandballTime',titolo:'L’Innotech Serra Fasano riparte con una vittoria di carattere.',link:'https://www.handballtime.it/innotech-serra-fasano-sannio-25-23-rimonta-finale/'},
+  {data:'2026-11-17',testata:'FasanoLive',titolo:'L’Innotech Serra Fasano riparte con una vittoria di carattere',link:'https://fasanolive.com/linnotech-serra-fasano-riparte-con-una-vittoria-di-carattere/'},
+  {data:'2026-11-16',testata:'Antenna Sud',titolo:'Pallamano A/M Silver, Serra Fasano: rimonta da urlo nel finale, Sannio ko',link:'https://www.antennasud.com/pallamano-a-m-silver-serra-fasano-rimonta-da-urlo-nel-finale-sannio-ko/'},
+  {data:'2026-11-14',testata:'Osservatorio Fasano',titolo:'La Innotech Serra Fasano torna in campo: oggi la insidiosa trasferta contro il Sannio',link:'https://www.osservatoriooggi.it/sport/pallamano/la-innotech-serra-fasano-torna-in-campo-oggi-la-insidiosa-trasferta-contro-il-sannio/'},
+  {data:'2026-11-14',testata:'Go Fasano',titolo:'Serie A Silver, impegno esterno per la Innotech Serra attesa da una sfida salvezza',link:'https://gofasano.com/secondarie/serie-a-silver-impegno-esterno-per-la-innotech-serra-attesa-da-una-sfida-salvezza/'},
+  {data:'2026-11-14',testata:'HandballTime',titolo:'Trasferta campana per il ritorno in campo della Innotech Serra Fasano',link:'https://www.handballtime.it/trasferta-campana-per-il-ritorno-in-campo-della-innotech-serra-fasano/'},
+  {data:'2026-11-13',testata:'FasanoLive',titolo:'Trasferta campana per il ritorno in campo della Innotech Serra Fasano',link:'https://fasanolive.com/trasferta-campana-per-il-ritorno-in-campo-della-innotech-serra-fasano/'},
   {data:'2026-11-07',testata:'HandballTime',titolo:'Prime Service Benevento, ko a Siracusa: ora testa alla sfida salvezza col Fasano',link:'https://www.handballtime.it/prime-service-benevento-ko-a-siracusa-ora-testa-alla-sfida-salvezza-col-fasano/'},
   {data:'2026-11-06',testata:'NTR24 Sport',titolo:'Serie A Silver: Handball Club Sannio Prime Service, sconfitta a Siracusa. Ora testa al Serra Fasano',link:'https://sport.ntr24.tv/2026/11/06/serie-a-silver-handball-club-sannio-prime-service-sconfitta-a-siracusa-ora-testa-al-serra-fasano/'},
   {data:'2026-11-03',testata:'HandballTime',titolo:'Innotech Serra Fasano: preziosa vittoria con il Monteprandone',link:'https://www.handballtime.it/serra-fasano-monteprandone-26-22-rimonta-salvezza/'},
